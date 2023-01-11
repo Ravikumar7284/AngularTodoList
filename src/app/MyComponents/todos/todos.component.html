@@ -1,0 +1,20 @@
+<!-- <ul *ngFor="let todo of todos">
+    <li>{{todo.tno}} - {{todo.ttitle}} - {{todo.tdesc}} - {{ todo.tactive}}</li>
+</ul> -->
+
+
+<!-- <ul>
+    <li>{{todos[0].tno}} - {{todos[0].ttitile}} - {{todos[0].tdesc}} - {{ todos[0].tactive}}</li>
+    <li>{{todos[1].tno}} - {{todos[1].ttitile}} - {{todos[1].tdesc}} - {{ todos[1].tactive}}</li>
+    <li>{{todos[2].tno}} - {{todos[2].ttitile}} - {{todos[2].tdesc}} - {{ todos[2].tactive}}</li>
+</ul> -->
+
+
+<app-add-todo (todoAdd)="addTodo($event)" ></app-add-todo>
+<h5>Your Todos</h5>
+<div *ngIf="this.todos.length===0; else elseBlock">No Todos to display</div>
+<ng-template #elseBlock>
+    <div *ngFor="let todo of todos; index as i">
+        <app-todo-item [todo]="todo" [i]="i" (todoDelete)="deleteTodo($event)" (todoCheckbox)="toggleTodo($event)"></app-todo-item>
+    </div>
+</ng-template>
